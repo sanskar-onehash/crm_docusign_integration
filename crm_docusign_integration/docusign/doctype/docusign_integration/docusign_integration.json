@@ -1,0 +1,165 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-26 14:25:36.061859",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "account_id",
+  "user_id",
+  "redirect_uri",
+  "consent_code",
+  "access_token",
+  "column_break_evsv",
+  "is_verified",
+  "integration_key",
+  "api_base_uri",
+  "secret_key",
+  "provide_consent",
+  "token_type",
+  "token_expiration",
+  "rsa_keypair_section",
+  "public_key",
+  "column_break_typj",
+  "private_key"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "column_break_evsv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "secret_key",
+   "fieldtype": "Password",
+   "label": "Secret Key",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "api_base_uri",
+   "fieldtype": "Data",
+   "label": "API Base URI",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "account_id",
+   "fieldtype": "Data",
+   "label": "Account Id",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "fieldname": "rsa_keypair_section",
+   "fieldtype": "Section Break",
+   "label": "RSA Keypair"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "public_key",
+   "fieldtype": "Data",
+   "label": "Public Key",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "fieldname": "column_break_typj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "private_key",
+   "fieldtype": "Password",
+   "label": "Private Key",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "user_id",
+   "fieldtype": "Data",
+   "label": "User Id",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "default": "0",
+   "depends_on": "is_verified",
+   "fieldname": "is_verified",
+   "fieldtype": "Check",
+   "label": "Is Verified",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.enabled && !doc.is_verified",
+   "description": "Your DocuSign keys and credentials has to be verified, make sure to verify them by providing the consent.",
+   "fieldname": "provide_consent",
+   "fieldtype": "Button",
+   "label": "Provide Consent"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "integration_key",
+   "fieldtype": "Data",
+   "label": "Integration Key",
+   "mandatory_depends_on": "enabled"
+  },
+  {
+   "description": "Please add this redirect url in DocuSign App's `Additional settings`",
+   "fieldname": "redirect_uri",
+   "fieldtype": "Read Only",
+   "label": "Redirect URI"
+  },
+  {
+   "fieldname": "access_token",
+   "fieldtype": "Password",
+   "hidden": 1,
+   "label": "Access Token"
+  },
+  {
+   "fieldname": "consent_code",
+   "fieldtype": "Password",
+   "hidden": 1,
+   "label": "Consent Code"
+  },
+  {
+   "fieldname": "token_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Token Type"
+  },
+  {
+   "fieldname": "token_expiration",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "Token Expiration"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-06-07 19:08:59.399597",
+ "modified_by": "Administrator",
+ "module": "DocuSign",
+ "name": "DocuSign Integration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
