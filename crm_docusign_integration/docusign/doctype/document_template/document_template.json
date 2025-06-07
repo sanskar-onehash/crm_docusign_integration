@@ -1,0 +1,134 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-05-25 19:04:51.822849",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "template_name",
+  "content_section",
+  "content_type",
+  "rich_text",
+  "markdown",
+  "html",
+  "context_section",
+  "context_script",
+  "style_section",
+  "insert_style",
+  "css"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Template Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "content_section",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "default": "Rich Text",
+   "description": "<p>Available DocuSign field:</p>\n<ol>\n  <li><code>`signature`</code></li>\n</ol>",
+   "fieldname": "content_type",
+   "fieldtype": "Select",
+   "label": "Content Type",
+   "options": "Rich Text\nMarkdown\nHTML"
+  },
+  {
+   "depends_on": "eval:doc.content_type==\"Rich Text\"",
+   "description": "<p>You can add DocuSign fields with: <code>`{{docusign_field}}`</code></p>\n<p>For Example: <code>`{{signature}}`</code></p>",
+   "fieldname": "rich_text",
+   "fieldtype": "Text Editor",
+   "label": "Rich Text"
+  },
+  {
+   "depends_on": "eval:doc.content_type==\"Markdown\"",
+   "description": "<p>You can add DocuSign fields with: <code>`{{docusign_field}}`</code></p>\n<p>For Example: <code>`{{signature}}`</code></p>",
+   "fieldname": "markdown",
+   "fieldtype": "Markdown Editor",
+   "label": "Markdown"
+  },
+  {
+   "depends_on": "eval:doc.content_type==\"HTML\"",
+   "description": "<p>You can add DocuSign fields with: <code>`{{docusign_field}}`</code></p>\n<p>For Example: <code>`{{signature}}`</code></p>",
+   "fieldname": "html",
+   "fieldtype": "HTML Editor",
+   "label": "HTML"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "context_section",
+   "fieldtype": "Section Break",
+   "label": "Context"
+  },
+  {
+   "description": "<p>Set context before rendering a template. Example:</p><p>\n</p><div><pre><code>\ncontext.project = frappe.get_doc(\"Project\", frappe.form_dict.name)\n</code></pre></div><p>You will get the docname related doctype name from <code>`context.docname`</code>.</p><p></p>",
+   "fieldname": "context_script",
+   "fieldtype": "Code",
+   "label": "Context Script",
+   "options": "Python"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:doc.content_type==\"HTML\"",
+   "fieldname": "style_section",
+   "fieldtype": "Section Break",
+   "label": "Style"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.content_type==\"HTML\"",
+   "fieldname": "insert_style",
+   "fieldtype": "Check",
+   "label": "Insert Style"
+  },
+  {
+   "depends_on": "eval:doc.content_type==\"HTML\"",
+   "fieldname": "css",
+   "fieldtype": "Code",
+   "label": "CSS",
+   "options": "CSS"
+  },
+  {
+   "default": "DOC-TEMP-",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "DOC-TEMP-",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-05-26 16:12:14.788843",
+ "modified_by": "Administrator",
+ "module": "DocuSign",
+ "name": "Document Template",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
