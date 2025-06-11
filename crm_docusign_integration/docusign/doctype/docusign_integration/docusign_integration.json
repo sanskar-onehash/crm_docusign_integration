@@ -7,6 +7,7 @@
  "field_order": [
   "enabled",
   "account_id",
+  "api_account_id",
   "user_id",
   "redirect_uri",
   "consent_code",
@@ -137,12 +138,19 @@
    "fieldtype": "Datetime",
    "hidden": 1,
    "label": "Token Expiration"
+  },
+  {
+   "depends_on": "enabled",
+   "fieldname": "api_account_id",
+   "fieldtype": "Data",
+   "label": "API Account Id",
+   "mandatory_depends_on": "enabled"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-06-07 19:08:59.399597",
+ "modified": "2025-06-10 18:02:48.253357",
  "modified_by": "Administrator",
  "module": "DocuSign",
  "name": "DocuSign Integration",

@@ -25,8 +25,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Template Name",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fieldname": "content_section",
@@ -35,7 +34,6 @@
   },
   {
    "default": "Rich Text",
-   "description": "<p>Available DocuSign field:</p>\n<ol>\n  <li><code>`signature`</code></li>\n</ol>",
    "fieldname": "content_type",
    "fieldtype": "Select",
    "label": "Content Type",
@@ -43,21 +41,18 @@
   },
   {
    "depends_on": "eval:doc.content_type==\"Rich Text\"",
-   "description": "<p>You can add DocuSign fields with: <code>`{{docusign_field}}`</code></p>\n<p>For Example: <code>`{{signature}}`</code></p>",
    "fieldname": "rich_text",
    "fieldtype": "Text Editor",
    "label": "Rich Text"
   },
   {
    "depends_on": "eval:doc.content_type==\"Markdown\"",
-   "description": "<p>You can add DocuSign fields with: <code>`{{docusign_field}}`</code></p>\n<p>For Example: <code>`{{signature}}`</code></p>",
    "fieldname": "markdown",
    "fieldtype": "Markdown Editor",
    "label": "Markdown"
   },
   {
    "depends_on": "eval:doc.content_type==\"HTML\"",
-   "description": "<p>You can add DocuSign fields with: <code>`{{docusign_field}}`</code></p>\n<p>For Example: <code>`{{signature}}`</code></p>",
    "fieldname": "html",
    "fieldtype": "HTML Editor",
    "label": "HTML"
@@ -69,7 +64,7 @@
    "label": "Context"
   },
   {
-   "description": "<p>Set context before rendering a template. Example:</p><p>\n</p><div><pre><code>\ncontext.project = frappe.get_doc(\"Project\", frappe.form_dict.name)\n</code></pre></div><p>You will get the docname related doctype name from <code>`context.docname`</code>.</p><p></p>",
+   "description": "<p>Set context before rendering a template. Example:</p><p>\n</p><div><pre><code>\ncontext.project = frappe.get_doc(\"Project\", frappe.form_dict.name)\n</code></pre></div>\n<br>\n<hr>\n<p>\n</p><p>For DocuSign Tabs please refer this document: <code>`https://developers.docusign.com/docs/esign-rest-api/esign101/concepts/responsive/setting-tabs/` </code></p>\n<p>\n</p><p>You will get the related doctype from <code>`context.doctype`</code> and docname from <code>`context.docname`</code>.</p>\n<p></p>\n<p>For <code>`DocuSign`</code> templates:\n\n</p><ol>\n<li>You can set document name on: <code>`context.document`</code></li>\n<li>\nYou can set recipients on: <code>`context.recipients`</code>\n<ul>\n<li>\nAs this template will be used in DocType <code>`Envelop`</code> where multiple documents is very much possible.\n</li>\n<li>\nSo we will <strong>really need unique recipientIds</strong> as same id might be given to other document.\n</li>\n<li>\nOr you can not set or leave the recipientId blank and we will make sure unique <code>`recipientId`</code> across all the other documents.\n</li>\n</ul>\n</li>\n</ol>",
    "fieldname": "context_script",
    "fieldtype": "Code",
    "label": "Context Script",
@@ -108,7 +103,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-26 16:12:14.788843",
+ "modified": "2025-06-11 14:34:47.706243",
  "modified_by": "Administrator",
  "module": "DocuSign",
  "name": "Document Template",

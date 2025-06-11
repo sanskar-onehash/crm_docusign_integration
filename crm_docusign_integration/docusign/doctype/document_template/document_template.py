@@ -39,8 +39,7 @@ class DocumentTemplate(Document):
         return self._context
 
     def generate_markup(self, doctype=None, docname=None):
-        if not hasattr(self, "_context"):
-            self.get_document_context(doctype, docname)
+        self.get_document_context(doctype, docname)
 
         self.render_dynamic(self._get_html_markup(), self._context)
         return self._context.get("main_section")
