@@ -48,7 +48,7 @@ def get_authorization_token():
 
     if (
         not docusign_settings.get("token_expiration")
-        or docusign_settings.get("token_expiration") > cur_time
+        or utils.get_datetime(docusign_settings.get("token_expiration")) < cur_time
     ):
         refresh_access_token()
         docusign_settings.reload()
