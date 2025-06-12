@@ -11,7 +11,7 @@
   "reference_doctype",
   "reference_link",
   "column_break_ykvd",
-  "envelop_id",
+  "envelope_id",
   "document_templates",
   "signed",
   "section_break_fhqs",
@@ -90,16 +90,16 @@
    "search_index": 1
   },
   {
-   "fieldname": "envelop_id",
+   "fieldname": "envelope_id",
    "fieldtype": "Data",
-   "label": "Envelop Id",
+   "label": "Envelope Id",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-11 15:19:47.914602",
+ "modified": "2025-06-12 07:16:26.280893",
  "modified_by": "Administrator",
  "module": "DocuSign",
  "name": "Envelope",
