@@ -14,6 +14,7 @@
   "envelope_id",
   "document_templates",
   "signed",
+  "envelope_status",
   "section_break_fhqs",
   "documents",
   "amended_from"
@@ -94,12 +95,18 @@
    "fieldtype": "Data",
    "label": "Envelope Id",
    "read_only": 1
+  },
+  {
+   "fieldname": "envelope_status",
+   "fieldtype": "Select",
+   "label": "Envelope Status",
+   "options": "\nDelivered\nCompleted\nDeclined\nVoided"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-12 07:16:26.280893",
+ "modified": "2025-06-12 11:47:07.657688",
  "modified_by": "Administrator",
  "module": "DocuSign",
  "name": "Envelope",

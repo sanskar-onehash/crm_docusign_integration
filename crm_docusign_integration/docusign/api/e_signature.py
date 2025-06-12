@@ -2,6 +2,7 @@ import json
 import frappe
 from frappe.utils import base64
 from crm_docusign_integration.docusign.api import make_post_req
+from crm_docusign_integration.docusign.api.config import ENVELOPE_EVENT_STATUS_MAP
 
 
 def send_envelope(envelope_doc, documents):
@@ -26,6 +27,25 @@ def send_envelope(envelope_doc, documents):
 
 @frappe.whitelist(allow_guest=True)
 def envelope_events_webhook():
+    triggered_event = frappe.form_dict.get("event")
+    envelope_id = frappe.form_dict.get("data", {}).get("envelopeId")
+    sys_envelopes = frappe.db.get_all(
+        "Envelope", "name", {"envelope_id": envelope_id}, limit=1
+    )
+
+    if len(sys_envelopes):
+        envelope_name = sys_envelopes[0]["name"]
+        new_envelope_status = ENVELOPE_EVENT_STATUS_MAP.get(triggered_event, "")
+        if new_envelope_status:
+            frappe.db.set_value(
+                "Envelope",
+                envelope_name,
+                {
+                    "envelope_status": new_envelope_status,
+                    "signed": triggered_event == "envelope-completed",
+                },
+            )
+
     frappe.log_error("DocuSign webhook event data", frappe.form_dict)
 
 
@@ -42,9 +62,6 @@ def prepare_envelope(envelope_doc, documents):
                 "envelope-completed",
                 "envelope-declined",
                 "envelope-voided",
-                "recipient-declined",
-                "recipient-delivered",
-                "recipient-completed",
             ],
             "eventData": {"version": "restv2.1"},
             "includeCertificateOfCompletion": "true",
