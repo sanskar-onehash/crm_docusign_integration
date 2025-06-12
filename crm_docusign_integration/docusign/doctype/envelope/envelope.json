@@ -15,6 +15,7 @@
   "document_templates",
   "signed",
   "envelope_status",
+  "certificate",
   "section_break_fhqs",
   "documents",
   "amended_from"
@@ -55,7 +56,8 @@
    "fieldname": "documents",
    "fieldtype": "Table",
    "label": "Documents",
-   "options": "Envelope Documents"
+   "options": "Envelope Documents",
+   "read_only": 1
   },
   {
    "default": "ENVP-",
@@ -100,13 +102,22 @@
    "fieldname": "envelope_status",
    "fieldtype": "Select",
    "label": "Envelope Status",
-   "options": "\nDelivered\nCompleted\nDeclined\nVoided"
+   "options": "\nDelivered\nCompleted\nDeclined\nVoided",
+   "read_only": 1
+  },
+  {
+   "depends_on": "certificate",
+   "fieldname": "certificate",
+   "fieldtype": "Link",
+   "label": "Certificate",
+   "options": "File",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-12 11:47:07.657688",
+ "modified": "2025-06-12 15:45:50.820833",
  "modified_by": "Administrator",
  "module": "DocuSign",
  "name": "Envelope",
@@ -129,5 +140,6 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

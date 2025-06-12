@@ -11,8 +11,9 @@ class Envelope(Document):
 
     def after_insert(self):
         documents = []
+        self.documents = []
 
-        for template in self.document_templates:
+        for idx, template in enumerate(self.document_templates):
             template_doc = frappe.get_doc(
                 "Document Template", template.document_template
             )
@@ -41,9 +42,10 @@ class Envelope(Document):
                 }
             ).insert()
 
-            frappe.log_error("context", template_context)
+            document_id = idx + 1  # Start ids with 1
             documents.append(
                 {
+                    "id": document_id,
                     "file": document_pdf,
                     "name": template_context.get("document"),
                     "extension": "pdf",
@@ -51,7 +53,7 @@ class Envelope(Document):
                 }
             )
 
-            self.append("documents", {"document": file_doc.name})
+            self.append("documents", {"document": file_doc.name, "id": document_id})
 
         send_envelope(self, documents)
         self.save()
