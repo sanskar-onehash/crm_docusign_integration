@@ -103,7 +103,7 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2025-06-11 15:31:16.614238",
+  "modified": "2025-07-07 14:21:59.529552",
   "modified_by": "Administrator",
   "module": "DocuSign",
   "name": "Document Template",
@@ -154,8 +154,10 @@
       "select": 1
     }
   ],
+  "show_title_field_in_link": 1,
   "sort_field": "modified",
   "sort_order": "DESC",
-  "states": []
+  "states": [],
+  "title_field": "template_name"
 }
 
