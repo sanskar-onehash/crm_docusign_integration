@@ -1,153 +1,190 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "naming_series:",
- "creation": "2025-05-26 15:40:16.887932",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "naming_series",
-  "subject",
-  "reference_doctype",
-  "reference_link",
-  "from_pack",
-  "column_break_ykvd",
-  "envelope_id",
-  "document_templates",
-  "signed",
-  "envelope_status",
-  "certificate",
-  "section_break_fhqs",
-  "documents",
-  "amended_from"
- ],
- "fields": [
-  {
-   "allow_in_quick_entry": 1,
-   "fieldname": "reference_doctype",
-   "fieldtype": "Link",
-   "label": "Reference DocType",
-   "options": "DocType"
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "description": "Documents will be attached to this document",
-   "fieldname": "reference_link",
-   "fieldtype": "Dynamic Link",
-   "label": "Reference Link",
-   "mandatory_depends_on": "reference_doctype",
-   "options": "reference_doctype"
-  },
-  {
-   "fieldname": "column_break_ykvd",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fieldname": "signed",
-   "fieldtype": "Check",
-   "label": "Signed",
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_break_fhqs",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "documents",
-   "fieldtype": "Table",
-   "label": "Documents",
-   "options": "Envelope Documents",
-   "read_only": 1
-  },
-  {
-   "default": "ENVP-",
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "hidden": 1,
-   "label": "Series",
-   "options": "ENVP-",
-   "reqd": 1
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "fieldname": "document_templates",
-   "fieldtype": "Table MultiSelect",
-   "label": "Document Templates",
-   "options": "Document Templates"
-  },
-  {
-   "fieldname": "subject",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Subject",
-   "reqd": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Envelope",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "envelope_id",
-   "fieldtype": "Data",
-   "label": "Envelope Id",
-   "read_only": 1
-  },
-  {
-   "fieldname": "envelope_status",
-   "fieldtype": "Select",
-   "label": "Envelope Status",
-   "options": "\nDelivered\nCompleted\nDeclined\nVoided",
-   "read_only": 1
-  },
-  {
-   "depends_on": "certificate",
-   "fieldname": "certificate",
-   "fieldtype": "Link",
-   "label": "Certificate",
-   "options": "File",
-   "read_only": 1
-  },
-  {
-   "fieldname": "from_pack",
-   "fieldtype": "Link",
-   "label": "From Pack",
-   "options": "Documents Pack",
-   "read_only": 1
-  }
- ],
- "index_web_pages_for_search": 1,
- "is_submittable": 1,
- "links": [],
- "modified": "2025-07-07 11:56:24.581175",
- "modified_by": "Administrator",
- "module": "DocuSign",
- "name": "Envelope",
- "naming_rule": "By \"Naming Series\" field",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "quick_entry": 1,
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "naming_series:",
+  "creation": "2025-05-26 15:40:16.887932",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "subject",
+    "reference_doctype",
+    "reference_link",
+    "from_pack",
+    "column_break_ykvd",
+    "envelope_id",
+    "document_templates",
+    "signed",
+    "envelope_status",
+    "certificate",
+    "section_break_fhqs",
+    "documents",
+    "amended_from"
+  ],
+  "fields": [
+    {
+      "allow_in_quick_entry": 1,
+      "fieldname": "reference_doctype",
+      "fieldtype": "Link",
+      "label": "Reference DocType",
+      "options": "DocType"
+    },
+    {
+      "allow_in_quick_entry": 1,
+      "description": "Documents will be attached to this document",
+      "fieldname": "reference_link",
+      "fieldtype": "Dynamic Link",
+      "label": "Reference Link",
+      "mandatory_depends_on": "reference_doctype",
+      "options": "reference_doctype"
+    },
+    {
+      "fieldname": "column_break_ykvd",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "0",
+      "fieldname": "signed",
+      "fieldtype": "Check",
+      "label": "Signed",
+      "read_only": 1
+    },
+    {
+      "fieldname": "section_break_fhqs",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "documents",
+      "fieldtype": "Table",
+      "label": "Documents",
+      "options": "Envelope Documents",
+      "read_only": 1
+    },
+    {
+      "default": "ENVP-",
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "hidden": 1,
+      "label": "Series",
+      "options": "ENVP-",
+      "reqd": 1
+    },
+    {
+      "allow_in_quick_entry": 1,
+      "fieldname": "document_templates",
+      "fieldtype": "Table MultiSelect",
+      "label": "Document Templates",
+      "options": "Document Templates"
+    },
+    {
+      "fieldname": "subject",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Subject",
+      "reqd": 1
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "no_copy": 1,
+      "options": "Envelope",
+      "print_hide": 1,
+      "read_only": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "envelope_id",
+      "fieldtype": "Data",
+      "label": "Envelope Id",
+      "read_only": 1
+    },
+    {
+      "fieldname": "envelope_status",
+      "fieldtype": "Select",
+      "label": "Envelope Status",
+      "options": "\nDelivered\nCompleted\nDeclined\nVoided",
+      "read_only": 1
+    },
+    {
+      "depends_on": "certificate",
+      "fieldname": "certificate",
+      "fieldtype": "Link",
+      "label": "Certificate",
+      "options": "File",
+      "read_only": 1
+    },
+    {
+      "fieldname": "from_pack",
+      "fieldtype": "Link",
+      "label": "From Pack",
+      "options": "Documents Pack",
+      "read_only": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "is_submittable": 1,
+  "links": [],
+  "modified": "2025-07-07 12:34:30.007802",
+  "modified_by": "Administrator",
+  "module": "DocuSign",
+  "name": "Envelope",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "select": 1,
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "DocuSign Administrator",
+      "select": 1,
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "DocuSign Manager",
+      "select": 1,
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "DocuSign User",
+      "select": 1,
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "quick_entry": 1,
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 1
 }
+

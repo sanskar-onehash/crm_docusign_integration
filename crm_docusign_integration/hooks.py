@@ -83,13 +83,13 @@ app_license = "mit"
 # ------------
 
 # before_install = "crm_docusign_integration.install.before_install"
-# after_install = "crm_docusign_integration.install.after_install"
+after_install = "crm_docusign_integration.install.after_install"
 
 # Uninstallation
 # ------------
 
 # before_uninstall = "crm_docusign_integration.uninstall.before_uninstall"
-# after_uninstall = "crm_docusign_integration.uninstall.after_uninstall"
+after_uninstall = "crm_docusign_integration.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
@@ -241,4 +241,3 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
