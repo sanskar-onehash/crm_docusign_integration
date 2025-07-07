@@ -10,6 +10,7 @@
   "subject",
   "reference_doctype",
   "reference_link",
+  "from_pack",
   "column_break_ykvd",
   "envelope_id",
   "document_templates",
@@ -112,12 +113,19 @@
    "label": "Certificate",
    "options": "File",
    "read_only": 1
+  },
+  {
+   "fieldname": "from_pack",
+   "fieldtype": "Link",
+   "label": "From Pack",
+   "options": "Documents Pack",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-12 15:45:50.820833",
+ "modified": "2025-07-07 11:56:24.581175",
  "modified_by": "Administrator",
  "module": "DocuSign",
  "name": "Envelope",
