@@ -2,12 +2,14 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("DocuSign Integration", {
-  provide_consent: function (frm) {
+  provide_consent: async function (frm) {
     if (frm.is_dirty()) {
       frappe.msgprint("Please save the changes before providing the consent.");
       return;
     }
 
+    await frm.set_value("is_verified", false);
+    await frm.save();
     frm.set_df_property("provide_consent", "hidden", 1);
     frappe.show_alert(
       {
