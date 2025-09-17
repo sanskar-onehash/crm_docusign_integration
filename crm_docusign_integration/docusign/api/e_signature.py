@@ -54,7 +54,6 @@ def prepare_envelope(envelope_doc, documents, templates_data):
     envelope_data = {
         "status": "sent",
         "emailSubject": envelope_doc.subject,
-        "recipients": envelope_data.get("recipients") or {"signers": []},
         "eventNotification": {
             "deliveryMode": "SIM",
             "events": [
@@ -97,6 +96,9 @@ def prepare_envelope(envelope_doc, documents, templates_data):
 
             if not signer.get("recipientId"):
                 signer["recipientId"] = f"{document_id}.{recipient_id}"
+
+            if not envelope_data.get("recipients"):
+                envelope_data["recipients"] = {"signers": []}
 
             envelope_data["recipients"]["signers"].append(signer)
             recipient_id = recipient_id + 1
