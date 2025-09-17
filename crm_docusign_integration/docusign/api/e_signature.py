@@ -8,8 +8,8 @@ from crm_docusign_integration.docusign.api import (
 )
 
 
-def send_envelope(envelope_doc, documents):
-    envelope_data = prepare_envelope(envelope_doc, documents)
+def send_envelope(envelope_doc, documents, templates_data):
+    envelope_data = prepare_envelope(envelope_doc, documents, templates_data)
     docusign_settings = frappe.get_doc("DocuSign Integration", "DocuSign Integration")
 
     res = make_post_req(
@@ -47,12 +47,14 @@ def fetch_templates():
     return templates
 
 
-def prepare_envelope(envelope_doc, documents):
+def prepare_envelope(envelope_doc, documents, templates_data):
+    if documents and templates_data:
+        frappe.throw("Both Documents and Templates data is not supported")
+
     envelope_data = {
         "status": "sent",
         "emailSubject": envelope_doc.subject,
-        "documents": [],
-        "recipients": {"signers": []},
+        "recipients": envelope_data.get("recipients") or {"signers": []},
         "eventNotification": {
             "deliveryMode": "SIM",
             "events": [
@@ -72,7 +74,10 @@ def prepare_envelope(envelope_doc, documents):
     }
 
     # Add documents and recipients
-    for document in documents:
+    for document in documents or []:
+        if not envelope_data.get("documents"):
+            envelope_data["documents"] = []
+
         document_id = document.get("id")
         envelope_data["documents"].append(
             {
@@ -87,7 +92,7 @@ def prepare_envelope(envelope_doc, documents):
 
         doc_recipients = document.get("recipients")
 
-        for signer in doc_recipients.get("signers"):
+        for signer in doc_recipients.get("signers") or []:
             recipient_id = 1
 
             if not signer.get("recipientId"):
@@ -95,5 +100,12 @@ def prepare_envelope(envelope_doc, documents):
 
             envelope_data["recipients"]["signers"].append(signer)
             recipient_id = recipient_id + 1
+
+    for idx, template_data in enumerate(templates_data):
+        if not envelope_data.get("compositeTemplates"):
+            envelope_data["compositeTemplates"] = []
+
+        template_data.update({"compositeTemplateId": idx})
+        envelope_data["compositeTemplates"].append(template_data)
 
     return envelope_data

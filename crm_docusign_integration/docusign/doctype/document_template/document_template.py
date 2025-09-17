@@ -23,6 +23,7 @@ class DocumentTemplate(Document):
             self._context = frappe._dict()
             self._context["doctype"] = doctype
             self._context["docname"] = docname
+            self._context["document_template"] = self.as_dict()
 
             if self.context_script:
                 _locals = dict(context=self._context)
