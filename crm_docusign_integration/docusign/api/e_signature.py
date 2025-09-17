@@ -39,7 +39,7 @@ def fetch_templates():
 
         templates.extend(transformer.parse_templates(data))
 
-        if not data["nextUri"]:
+        if not data.get("nextUri"):
             break
 
         req_uri = data["nextUri"]
