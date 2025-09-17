@@ -18,20 +18,23 @@ def envelope_events_webhook():
             new_envelope_status = (
                 config.ENVELOPE_EVENT_STATUS_MAP.get(triggered_event) or ""
             )
-            is_signed = triggered_event == config.ENVELOPE_SIGNED_EVENT
+            is_completed = triggered_event == config.ENVELOPE_COMPLETED_EVENT
 
             if new_envelope_status:
                 envelope_doc.update(
                     {
                         "envelope_status": new_envelope_status,
-                        "signed": is_signed,
+                        "signed": is_completed,
                     }
                 )
 
-            if is_signed:
+            if is_completed:
+                envelope_doc.docstatus = 1
+
                 envelope_documents = envelope_data.get("envelopeSummary", {}).get(
                     "envelopeDocuments", []
                 )
+
                 attached_to_doctype = "Envelope"
                 attached_to_name = envelope_doc.name
                 if envelope_doc.get("reference_doctype"):
@@ -57,9 +60,7 @@ def envelope_events_webhook():
                             }
                         ).insert(ignore_permissions=True)
 
-                        envelope_doc.update(
-                            {"certificate": file_doc.name, "docstatus": 1}
-                        )
+                        envelope_doc.certificate = file_doc.name
                     else:
                         file_doc = file_doc.update(
                             {

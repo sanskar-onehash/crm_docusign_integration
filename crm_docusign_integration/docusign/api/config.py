@@ -5,4 +5,4 @@ ENVELOPE_EVENT_STATUS_MAP = {
     "envelope-voided": "Voided",
 }
 
-ENVELOPE_SIGNED_EVENT = "envelope-completed"
+ENVELOPE_COMPLETED_EVENT = "envelope-completed"
