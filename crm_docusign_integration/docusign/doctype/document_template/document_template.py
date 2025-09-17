@@ -3,12 +3,17 @@
 
 import frappe
 
+from crm_docusign_integration.docusign.api import e_signature
 from jinja2 import TemplateSyntaxError
 from frappe.model.document import Document
 from frappe.utils import md_to_html
 from frappe.utils.safe_exec import safe_exec
 from frappe.utils.jinja import render_template
 from frappe.utils.pdf import get_pdf
+
+FETCH_TEMPLATES_TIMEOUT = 25 * 60
+FETCH_TEMPLATES_JOB_NAME = "fetch_docusign_templates"
+FETCH_DOCUSIGN_TEMPLATES_PROGRESS_EVENT = "fetch_docusign_templates_progress"
 
 
 class DocumentTemplate(Document):
@@ -68,3 +73,49 @@ class DocumentTemplate(Document):
             finally:
                 frappe.flags.web_block_scripts = {}
                 frappe.flags.web_block_styles = {}
+
+
+@frappe.whitelist()
+def fetch_templates():
+    if not frappe.has_permission("Document Template", "create"):
+        frappe.throw("User does not have permission to create new Document Template")
+
+    frappe.enqueue(
+        _fetch_templates,
+        queue="default",
+        timeout=FETCH_TEMPLATES_TIMEOUT,
+        job_name=FETCH_TEMPLATES_JOB_NAME,
+    )
+    return {
+        "status": "success",
+        "msg": "DocuSign Templates syncing started in background.",
+        "track_on": FETCH_DOCUSIGN_TEMPLATES_PROGRESS_EVENT,
+    }
+
+
+def _fetch_templates():
+    templates = e_signature.fetch_templates()
+    total_templates = len(templates)
+
+    for idx, template in enumerate(templates):
+        frappe.publish_realtime(
+            FETCH_DOCUSIGN_TEMPLATES_PROGRESS_EVENT,
+            {
+                "progress": idx + 1,
+                "total": total_templates,
+                "title": "Fetching DocuSign Templates",
+            },
+        )
+
+        if not frappe.db.exists(
+            "Document Template", {"template_id": template["template_id"]}
+        ):
+            frappe.get_doc(
+                {
+                    "doctype": "Document Template",
+                    "template_id": template["template_id"],
+                    "template_name": template["template_name"],
+                }
+            ).save()
+
+    frappe.db.commit()
