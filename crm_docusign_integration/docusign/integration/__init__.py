@@ -1,5 +1,5 @@
 import requests
-from crm_docusign_integration.docusign.api.auth import get_authorization_token
+from crm_docusign_integration.docusign.integration.auth import get_authorization_token
 
 
 def make_post_req(url, data=None, json=None):

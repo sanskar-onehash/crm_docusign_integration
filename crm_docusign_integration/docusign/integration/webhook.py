@@ -1,6 +1,6 @@
 import frappe
 from base64 import b64decode
-from crm_docusign_integration.docusign.api import config
+from crm_docusign_integration.docusign.integration import config
 
 
 @frappe.whitelist(allow_guest=True)

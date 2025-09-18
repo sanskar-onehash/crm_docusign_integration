@@ -3,7 +3,7 @@
 
 import frappe
 
-from crm_docusign_integration.docusign.api import e_signature
+from crm_docusign_integration.docusign.integration import e_signature
 from jinja2 import TemplateSyntaxError
 from frappe.model.document import Document
 from frappe.utils import md_to_html

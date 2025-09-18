@@ -17,6 +17,6 @@ class DocuSignIntegration(Document):
         if not self.get("redirect_uri"):
             self.update(
                 {
-                    "redirect_uri": f"https://{frappe.local.site}/api/method/crm_docusign_integration.docusign.api.auth.verify_consent"
+                    "redirect_uri": f"https://{frappe.local.site}/api/method/crm_docusign_integration.docusign.integration.auth.verify_consent"
                 }
             )

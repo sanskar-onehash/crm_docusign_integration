@@ -1,7 +1,7 @@
 import json
 import frappe
 from frappe.utils import base64
-from crm_docusign_integration.docusign.api import (
+from crm_docusign_integration.docusign.integration import (
     make_get_req,
     make_post_req,
     transformer,

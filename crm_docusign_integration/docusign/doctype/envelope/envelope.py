@@ -4,7 +4,7 @@
 import frappe
 from frappe.model.document import Document
 
-from crm_docusign_integration.docusign.api.e_signature import send_envelope
+from crm_docusign_integration.docusign.integration.e_signature import send_envelope
 
 
 class Envelope(Document):

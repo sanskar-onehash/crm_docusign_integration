@@ -20,7 +20,7 @@ frappe.ui.form.on("DocuSign Integration", {
     );
 
     frappe.call({
-      method: "crm_docusign_integration.docusign.api.auth.get_consent_url",
+      method: "crm_docusign_integration.docusign.integration.auth.get_consent_url",
       callback: (r) => r.message && (window.location.href = r.message),
     });
   },
