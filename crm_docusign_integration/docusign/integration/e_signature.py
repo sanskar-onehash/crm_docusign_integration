@@ -68,7 +68,7 @@ def prepare_envelope(envelope_doc, documents, templates_data):
             "includeDocuments": "true",
             "includeEnvelopeVoidReason": "true",
             "includeHMAC": "true",
-            "url": f"https://{frappe.local.site}/api/method/crm_docusign_integration.docusign.api.e_signature.envelope_events_webhook",
+            "url": f"https://{frappe.local.site}/api/method/crm_docusign_integration.docusign.integration.webhook.envelope_events_webhook",
         },
     }
 
