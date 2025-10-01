@@ -41,6 +41,10 @@ def envelope_events_webhook():
                     attached_to_doctype = envelope_doc.get("reference_doctype")
                     attached_to_name = envelope_doc.get("reference_link")
 
+                existing_documents_by_id = {}
+                for document in envelope_doc.get("documents") or []:
+                    existing_documents_by_id[document.get("id")] = document
+
                 for envp_doc in envelope_documents:
                     file_doc = frappe.get_doc(
                         {
@@ -69,9 +73,23 @@ def envelope_events_webhook():
                             }
                         ).insert(ignore_permissions=True)
 
-                        for document in envelope_doc.get("documents", default=[]):
-                            if document.get("id") == envp_doc.get("documentId"):
-                                document.update({"signed_document": file_doc.name})
+                    if envp_doc.get("documentId") in existing_documents_by_id:
+                        document = existing_documents_by_id[envp_doc.get("documentId")]
+                        document.update(
+                            {
+                                "signed_document": file_doc.name,
+                                "file_name": envp_doc.get("name"),
+                            }
+                        )
+                    else:
+                        envelope_doc.append(
+                            "documents",
+                            {
+                                "id": envp_doc.get("documentId"),
+                                "signed_document": file_doc.name,
+                                "file_name": envp_doc.get("name"),
+                            },
+                        )
             envelope_doc.save(ignore_permissions=True)
     except Exception as e:
         frappe.log_error("Error occured in envelope_events_webhook", e)

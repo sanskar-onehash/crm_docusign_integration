@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "id",
+  "file_name",
   "document",
   "signed_document"
  ],
@@ -32,12 +33,19 @@
    "fieldtype": "Data",
    "label": "Id",
    "read_only": 1
+  },
+  {
+   "fieldname": "file_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "File Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-06-12 13:51:02.734941",
+ "modified": "2025-10-01 15:54:00.320167",
  "modified_by": "Administrator",
  "module": "DocuSign",
  "name": "Envelope Documents",
