@@ -30,6 +30,7 @@ def envelope_events_webhook():
 
             if is_completed:
                 envelope_doc.docstatus = 1
+                envelope_doc.completed_on = frappe.utils.get_datetime()
 
                 envelope_documents = envelope_data.get("envelopeSummary", {}).get(
                     "envelopeDocuments", []

@@ -17,6 +17,7 @@
     "signed",
     "envelope_status",
     "certificate",
+    "completed_on",
     "section_break_fhqs",
     "documents",
     "amended_from"
@@ -120,12 +121,18 @@
       "label": "From Pack",
       "options": "Documents Pack",
       "read_only": 1
+    },
+    {
+      "fieldname": "completed_on",
+      "fieldtype": "Datetime",
+      "label": "Completed On",
+      "read_only": 1
     }
   ],
   "index_web_pages_for_search": 1,
   "is_submittable": 1,
   "links": [],
-  "modified": "2025-07-07 12:34:30.007802",
+  "modified": "2025-10-07 14:11:30.224481",
   "modified_by": "Administrator",
   "module": "DocuSign",
   "name": "Envelope",
